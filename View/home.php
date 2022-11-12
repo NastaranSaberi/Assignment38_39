@@ -7,7 +7,8 @@
     
 
  
-    // $user_id = $_SESSION["user_id"];
+
+$user = $db->query("SELECT * FROM users WHERE id = $user_id")->fetch_assoc();
 
 ?>
 
@@ -25,40 +26,11 @@
 
 
 <div class="container-fluid mt-3">
-    <div class="row row_home">
-        <div class="col-lg-3 menu_left" >
-
-            <!-- Left section -->
-            <ul class="list-group" >
-                <li class="list-group-item ">
-                    <span class="menu_items">
-                        <img src="https://static.xx.fbcdn.net/rsrc.php/v3/yj/r/tSXYIzZlfrS.png" class="mt-1" alt="" height="28px" width="28px" style="border-radius:50%;"> 
-                        Find Friends
-                    </span>
-                </li>
-                <li class="list-group-item " >
-                    <img src="https://static.xx.fbcdn.net/rsrc.php/v3/y-/r/FhOLTyUFKwf.png" class="mt-1" alt="" height="28px" width="28px" style="border-radius:50%;"> 
-                    <span class="menu_items">
-                        Watch
-                    </span>
-                </li>
-                <li class="list-group-item " >
-                    <img src="https://static.xx.fbcdn.net/rsrc.php/v3/yJ/r/tYxGXJRPH5q.png" class="mt-1" alt="" height="28px" width="28px" style="border-radius:50%;"> 
-                    <span class="menu_items">
-                        Memories
-                    </span>
-                </li>
-                <li class="list-group-item " >
-                    <img src="https://static.xx.fbcdn.net/rsrc.php/v3/yA/r/KlDlsO3UxDM.png" class="mt-1" alt="" height="28px" width="28px" style="border-radius:50%;"> 
-                    <span class="menu_items">
-                        Saved
-                    </span>
-                </li>
-            </ul>
-        </div>
+    <div class="row row_home justify-content-center">
+        
 
         <!-- Add post -->
-        <div class="col-lg-5 shadow-sm col_add_post">
+        <div class="col-lg-5 shadow-sm col_add_post ">
             <form method="post" action="post_process" id="form_new_post" enctype="multipart/form-data">
                 <div class="row row_add_post"   >
                     <div class="text-light text-center fs-2 fw-semibold mt-2 header__center">
@@ -67,15 +39,12 @@
                 </div>
                 <div class="row p-2">
                     <div class="col-lg-12">
-                            <div class="input-group mt-3">
+                        <div class="input-group mt-3">
                             <label class="form-check-label mt-3 mb-3 fs-5" >caption</label>
                                 <input class=" mt-1 text-dark input_caption " name="caption" type="text" placeholder="what's on your mind ?" >
                             </div>
                         </div>
-                        <!-- <div class="col-lg-12">
-                            <label class="form-check-label mt-4 mb-3 fs-5" >Photo / Video / Music</label>
-                            <input type="file" class="form-control input_file_add_post" name="media"  aria-label="Username" aria-describedby="basic-addon1" >
-                        </div> -->
+                    
                         <p>
                             <label class="form-check-label mt-4 mb-3 fs-5" >Media</label>
                             <div style=" margin-top: -22px;">
@@ -106,45 +75,12 @@
                             <input type="file" name="audio" class="form-control input_file_add_post" name="media"  aria-label="Username" aria-describedby="basic-addon1" >
                         </div> 
 
-
                         <div class="btn_center text-center">
                             <button form="form_new_post" class="mt-4 mb-3 btn_submit_add_post text-light" type="submit" class="btn btn-primary" >submit</button>
                         </div>
                 </div>
             </form>
-            
-            <!-- <hr>
-
-            <div class="row" style="padding: 10px;margin-left: 0px;">
-                <div class="col-lg-4 ">
-                    <svg fill="currentColor" viewBox="0 0 24 24" width="1.5em" height="1.5em" style="color:#F3425F;">
-                        <g fill-rule="evenodd" transform="translate(-444 -156)"><g>
-                            <path d="M113.029 2.514c-.363-.088-.746.014-1.048.234l-2.57 1.88a.999.999 0 0 0-.411.807v8.13a1 1 0 0 0 .41.808l2.602 1.901c.219.16.477.242.737.242.253 0 .508-.077.732-.235.34-.239.519-.65.519-1.065V3.735a1.25 1.25 0 0 0-.971-1.22m-20.15 6.563c.1-.146 2.475-3.578 5.87-3.578 3.396 0 5.771 3.432 5.87 3.578a.749.749 0 0 1 0 .844c-.099.146-2.474 3.578-5.87 3.578-3.395 0-5.77-3.432-5.87-3.578a.749.749 0 0 1 0-.844zM103.75 19a3.754 3.754 0 0 0 3.75-3.75V3.75A3.754 3.754 0 0 0 103.75 0h-10A3.754 3.754 0 0 0 90 3.75v11.5A3.754 3.754 0 0 0 93.75 19h10z" transform="translate(354 158.5)"></path>
-                            <path d="M98.75 12c1.379 0 2.5-1.121 2.5-2.5S100.129 7 98.75 7a2.503 2.503 0 0 0-2.5 2.5c0 1.379 1.121 2.5 2.5 2.5" transform="translate(354 158.5)"></path>
-                        </g>
-                    </svg>
-                    <span>Live video</span>
-                </div>
-                <div class="col-lg-4 ">
-                    <svg fill="currentColor" viewBox="0 0 24 24" width="1.5em" height="1.5em" style="color:#45BD62;">
-                        <g fill-rule="evenodd" transform="translate(-444 -156)"><g>
-                            <path d="m96.968 22.425-.648.057a2.692 2.692 0 0 1-1.978-.625 2.69 2.69 0 0 1-.96-1.84L92.01 4.32a2.702 2.702 0 0 1 .79-2.156c.47-.472 1.111-.731 1.774-.79l2.58-.225a.498.498 0 0 1 .507.675 4.189 4.189 0 0 0-.251 1.11L96.017 18.85a4.206 4.206 0 0 0 .977 3.091s.459.364-.026.485m8.524-16.327a1.75 1.75 0 1 1-3.485.305 1.75 1.75 0 0 1 3.485-.305m5.85 3.011a.797.797 0 0 0-1.129-.093l-3.733 3.195a.545.545 0 0 0-.062.765l.837.993a.75.75 0 1 1-1.147.966l-2.502-2.981a.797.797 0 0 0-1.096-.12L99 14.5l-.5 4.25c-.06.674.326 2.19 1 2.25l11.916 1.166c.325.026 1-.039 1.25-.25.252-.21.89-.842.917-1.166l.833-8.084-3.073-3.557z" transform="translate(352 156.5)"></path>
-                            <path fill-rule="nonzero" d="m111.61 22.963-11.604-1.015a2.77 2.77 0 0 1-2.512-2.995L98.88 3.09A2.77 2.77 0 0 1 101.876.58l11.603 1.015a2.77 2.77 0 0 1 2.513 2.994l-1.388 15.862a2.77 2.77 0 0 1-2.994 2.513zm.13-1.494.082.004a1.27 1.27 0 0 0 1.287-1.154l1.388-15.862a1.27 1.27 0 0 0-1.148-1.37l-11.604-1.014a1.27 1.27 0 0 0-1.37 1.15l-1.387 15.86a1.27 1.27 0 0 0 1.149 1.37l11.603 1.016z" transform="translate(352 156.5)"></path>
-                        </g>
-                    </svg>
-                    <span>Photo/video</span>
-                </div>
-                <div class="col-lg-4 ">
-                    <svg fill="currentColor" viewBox="0 0 24 24" width="1.5em" height="1.5em"style="color:#F7B928;" >
-                        <g fill-rule="evenodd" transform="translate(-444 -156)"><g>
-                            <path d="M107.285 13c.49 0 .841.476.712.957-.623 2.324-2.837 4.043-5.473 4.043-2.636 0-4.85-1.719-5.473-4.043-.13-.48.222-.957.712-.957h9.522z" transform="translate(353.5 156.5)"></path>
-                            <path fill-rule="nonzero" d="M114.024 11.5c0 6.351-5.149 11.5-11.5 11.5s-11.5-5.149-11.5-11.5S96.173 0 102.524 0s11.5 5.149 11.5 11.5zm-2 0a9.5 9.5 0 1 0-19 0 9.5 9.5 0 0 0 19 0z" transform="translate(353.5 156.5)"></path>
-                            <path d="M99.524 8.5c0 .829-.56 1.5-1.25 1.5s-1.25-.671-1.25-1.5.56-1.5 1.25-1.5 1.25.671 1.25 1.5m8.5 0c0 .829-.56 1.5-1.25 1.5s-1.25-.671-1.25-1.5.56-1.5 1.25-1.5 1.25.671 1.25 1.5m-.739 4.5h-9.522c-.49 0-.841.476-.712.957.623 2.324 2.837 4.043 5.473 4.043 2.636 0 4.85-1.719 5.473-4.043.13-.48-.222-.957-.712-.957m-2.165 2c-.667.624-1.592 1-2.596 1a3.799 3.799 0 0 1-2.596-1h5.192" transform="translate(353.5 156.5)"></path>
-                        </g>
-                    </svg>
-                    <span>Feeling/activity</span>
-                </div>
-            </div> -->
+         
         </div>
       
         
@@ -152,7 +88,7 @@
         <?php foreach ($posts_array as $post) : ?>
         <div class="row justify-content-center mt-5" style="padding: 0px;">
         
-            <div class="col-lg-5  shadow-sm col_others_post">
+            <div class="col-lg-5 col-sm-12  shadow-sm col_others_post">
                 <div class="card-header">
                     <div class="row">
                         <div class="col-lg-2">
@@ -179,17 +115,28 @@
 
                                 }
 
-                            ?>" class="mt-1 username_post" alt="" height="40px" width="40px" style="border-radius:50%;" loading="lazy">
+                            ?>" class=" username_post" alt="" height="40px" width="40px" style="border-radius:50%;" loading="lazy">
                         </div>
                         <div class="col-lg-10 col_username_post">
-                            <p class="text-white p_username">
-                                <?php echo $post["username"];?>
-                                <button class="btn-follow mb-2" style="margin-left: 6px;border-radius: 15px;width: 100px;border: none;" onclick= follow() id="follow">
-                                    follow
+                            
+                                <p class="text-white p_username">
+                                        <?php echo $post["username"];?>
+                                </p>
+                                  
+                                
+                                <form  action="follow_unfollow_user" method="post">
+                                <button class="btn" type="button" style="margin-left:75px;border-radius: 15px;width:88px;height:31px;border: none; background-color:#2374E1;color:white;font-weight:500;padding: 1px;margin-top: -3pc;" onclick= 'follow_unfollow()' id="follow" >
+                                follow
+                                   
                                 </button>
-                                <input type="hidden" name="post_id" value="<?php echo $post["id"]; ?>">
-                                <input type="hidden" name="user_id" value="<?php echo $post_id["id"]; ?>">
-                            </p>
+                                
+                                <input type="hidden" name="followings_id" value="<?php echo $user_id; ?>">
+                   
+                             
+                                </form>
+
+                            
+                           
                             <p>
                             <?php echo time2str($post["time"]); ?>
                                 <svg fill="currentColor" viewBox="0 0 16 16" width="1em" height="1em" class="a8c37x1j ms05siws l3qrxjdp b7h9ocf4 py1f6qlh cyypbtt7 fwizqjfa" title="Shared with Public">
@@ -200,9 +147,12 @@
                                     </g>
                                 </svg>
                             </p>
+
                         </div>
+                        
                     </div>  
                 </div>
+                
 
 
 
@@ -211,7 +161,7 @@
 
 
                 <div>
-                    <img src="<?php echo $post["media"]; ?>" class="card-img-top"  alt="..." height="500px" width="500px" loading="lazy" >
+                    <img src="<?php echo $post["media"]; ?>" class="card-img-top "  alt="..."  loading="lazy" style="height: 431px;">
                 </div>
 
 
@@ -233,15 +183,17 @@
                 <div class="footer">
                     <div class="row mt-3 mb-3" style="text-center">
                         <div class="col text-center ">
-                            <form  id="form-like-<?php echo $post["id_post"]; ?>" >
-                                <button class="like" style="border: none;background-color: #282828;color: white;" type="button" onclick='send_like(<?php echo $post["id_post"]; ?>)'  >
-                                   <span><?php echo $post["likes"]["count"]; ?></span>
-                                    <i class="fa fa-thumbs-up" aria-hidden="true"></i>
-                                    <span style="font-weight: 700;">Like</span>
-                                    <input type="hidden" name="post_id" value="<?php echo $post["id_post"]; ?>">
-                                </button>
-                          
-                            </form>
+                        <form  id="form-like-<?php echo $post["id_post"]; ?>" >
+                            <input type="hidden" name="post_id" value="<?php echo $post["id_post"]; ?>">
+                            <button class="like" style="border: none;background-color: #282828;color: white;" type="button" onclick='send_like(<?php echo $post["id_post"]; ?>)'  >
+                                <span id="count-like-<?php echo $post["id_post"]; ?>">
+                                    <?php echo $post["likes"]["count"]; ?>
+                                </span>
+                                <i id="btn-likes-<?php echo $post["id_post"]; ?>" class="<?php echo $post["like"] == 1 ? "fas" : "far"; ?> fa-heart fa-lg" style="color: <?php echo $post["like"]==1 ? "#DC143C;" :  "white;"; ?>"></i>
+                                <span style="font-weight: 700;">Like</span>   
+                            </button>
+                        </form>
+                            
                         </div>
                         <div class="col text-center">
                             <p>
@@ -268,8 +220,7 @@
                                     <?php foreach ($post["comments"] as $comment) : ?>
                                         <?php if($comment["post_id"] == $post["id"]):?>
                                             <ul class="list-group mt-1" id="list_comments_<?php echo $post["id_post"];?>" >
-                                                <li class="list-group-item list-group-item-action " aria-current="true" style="background:#212529;border: none;border-radius: 10px;">
-                                                    <div class="d-flex w-100 ">
+                                                <li class="list-group-item list-group-item-action lisss" aria-current="true" style="background:#212529;border: none;border-radius: 10px;">
                                                     <img src="<?php 
 
                                                         if($comment["image"] != "")
@@ -294,14 +245,18 @@
                                                         }
 
                                                         ?>" class="mt-1 " alt="" height="40px" width="40px" style="border-radius:50%;" loading="lazy">
-                                                        <h5 class="mb-1" style="margin-top: 10px;margin-left: 11px;">
+                                                        <h5 class="mb-1 h5-cm" style="margin-top: -34px;margin-left: 59px;">
                                                             <?php echo $comment["username"]; ?>
                                                         </h5>
-                                                        <div class="float-end">
-                                                            <small style="margin-left: 247px;" ><?php echo time2str($comment["time"]); ?></small>
-                                                        </div>
-                                                    </div>
-                                                    <p class="mb-1" style="margin-left: 53px;">
+                                                        <a href="user_page?user-id=<?php echo $comment["user_id"]; ?>" class="text-decoration-none">
+                                                            <b class="text-dark">:<?php echo $post["username"]; ?></b>
+                                                        </a>
+                                                        <!-- <div class="text-end " > -->
+                                                        <small class="text-end small_lis" style="float: right;margin-top: -27px;"><?php echo time2str($comment["time"]); ?></small>
+                                                        <!-- </div> -->
+                                                       
+                                                   
+                                                    <p class="mb-1" style="margin-left: 58px;margin-top: -10px;">
                                                         <?php echo $comment["text"]; ?>
                                                     </p>
                                                 </li>
@@ -326,25 +281,61 @@
             </div>
         </div>
         <?php endforeach; ?>
-       
-    </div> 
-</div>
+
+ 
 <script>
 
 
+    function follow_unfollow(){
+        let follow = document.getElementById("follow");
+        follow.style.background = "white";
+        follow.style.color = "black";
+        follow.innerHTML = "Unfollow";
+        
+        
+    }
 
-    async function send_like(post_id) {
+
+   function send_like(post_id) {
 
     let form = document.getElementById("form-like-" + post_id);
     let form_data = new FormData(form);
 
-    let x = await fetch("send_like",{
+    let btn = document.getElementById("btn-likes-" + post_id);
+    let count_number_tag = document.getElementById("count-like-" + post_id);
+
+    fetch("send_like",{
         method:"post",
         body:form_data
-    });
-    let y = await x.text();
+    }).then(
+        result => result.text()
+    ).then(result => {
+        if (result == 1) {
+            // color
+            btn.style.color = "#DC143C";
+            btn.classList.remove("far");
+            btn.classList.add("fas");
 
-    }
+            // number likes
+            let number = count_number_tag.innerHTML;
+            number++;
+            count_number_tag.innerHTML = number;
+        } else if (result == 0) {
+            // color
+            btn.style.color = "white";
+            btn.classList.remove("fas");
+            btn.classList.add("far");
+
+            // number of likes
+            let number = count_number_tag.innerHTML;
+            number--;
+            count_number_tag.innerHTML = number;
+        }
+    }).catch(error => {
+        console.log(error)
+    });
+
+}
 
 
 
@@ -352,17 +343,17 @@
 
 
     //Fetch API instead of XMLHttpRequest for AJAX
-    async function send_comment(post_id) {
+    function send_comment(post_id , username) {
         
         let form = document.getElementById("form-comment-" + post_id);
         let form_data = new FormData(form);
 
 
-    let x = await fetch("send_comment",{
+    fetch("send_comment",{
         method:"post",
         body:form_data
-    });
-    let y = await x.text();
+    }).then(result => {
+    
 
    
         let list_comments = document.getElementById("list_comments_"+post_id);
@@ -370,10 +361,33 @@
         let li = document.createElement("LI");
         li.classList.add("list-group-item");
         li.classList.add("list-group-item-action");
+        li.classList.add("mt-1");
+        li.classList.add("lisss");
+
+        // let img = document.createElement("IMG");
+        // img.classList.add("mt-1");
+        // img.innerHTML = img;
 
         let p = document.createElement("P");
         p.classList.add("mb-1");
+        p.classList.add("p_li");
         p.innerHTML = form_data.get("text");
+
+        let h5 = document.createElement("H5");
+        h5.classList.add("mb-1");
+        h5.classList.add("h5-cm");
+        h5.innerHTML = username;
+   
+        let small = document.createElement("SMALL");
+        small.classList.add("text-end");
+        small.classList.add("small_lis");
+        small.innerHTML = "just now".fontsize(2);
+
+
+        // let small = document.createElementById("SMALL");
+        // small.classList.add("text-end");
+        // small.innerHTML = form_data.get("time");
+
 
         // let div = document.createElementById("DIV");
         // div.classList.add(" d-flex w-100 ");
@@ -388,14 +402,20 @@
         // h5.appendChild(div); 
         // img.appendChild(div);  
         // div.appendChild(li);  
+        // li.appendChild(small);
+        // li.appendChild(img);  
+        li.appendChild(h5); 
+        li.appendChild(small); 
         li.appendChild(p);   
         list_comments.appendChild(li);
    
-  
-    
-    }
+    }).catch(error => {
+        alert(error);
+    })
+}
 
    
+
 
 
 </script>
