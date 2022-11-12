@@ -98,6 +98,12 @@ switch ($request)
     case ("/edit_post"):
         require "Controller/edit_post.php";
         break;
+
+    case ("/follow_unfollow_user.php/"):
+    case ("/follow_unfollow_user.php"):
+    case ("/follow_unfollow_user"):
+        require "Controller/follow_unfollow_user.php";
+        break;
         
     default:
         require "Controller/404.php";
