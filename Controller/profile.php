@@ -3,6 +3,8 @@
     include "Model/database.php"; 
     include "Controller/functions.php";
 
+    
+
     $user_id=$_SESSION["user_id"];
 
     $number_posts_user = $db->query("SELECT * FROM posts WHERE user_id = $user_id")->num_rows;
@@ -25,8 +27,8 @@
 
         $post["likes"] = $db->query("SELECT COUNT(*) AS count FROM likes WHERE post_id = $post_id")->fetch_assoc();
 
-        $post["following"] = $db->query("SELECT COUNT(*) AS count FROM follows WHERE follower_user_id = $user_id")->fetch_assoc();
-        $post["follower"] = $db->query("SELECT COUNT(*) AS count FROM follows WHERE following_user_id = $user_id")->fetch_assoc();
+        // $post["following"] = $db->query("SELECT COUNT(*) AS count FROM follows WHERE follower_user_id = $user_id")->fetch_assoc();
+        // $post["follower"] = $db->query("SELECT COUNT(*) AS count FROM follows WHERE following_user_id = $user_id")->fetch_assoc();
 
         
 
@@ -38,6 +40,7 @@
                                         ORDER BY time DESC");
 
         $posts_array[] = $post;
+        
         
     }
 
